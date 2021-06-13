@@ -10,20 +10,22 @@ module.exports = function(app) {
        createProxyMiddleware({
            target: 'https://scrive.com/',
             changeOrigin: true,
-            onProxyRes: function(proxyRes, req, res) {      
+            onProxyReq: function(proxyReq, req, res) {      
 
-                /*proxyReq.setHeader('oauth_consumer_key', cookies.get('oauth_consumer_key'));
-                proxyReq.setHeader('oauth_token', cookies.get('oauth_token'));
-                proxyReq.setHeader('oauth_signature', cookies.get('oauth_signature'));
-                proxyReq.setHeader('oauth_signature_method', 'PLAINTEXT');*/
+              console.log(cookies.getAll())
+              //  proxyReq.setHeader('oauth_consumer_key', cookies.get('oauth_consumer_key'));
+              //   proxyReq.setHeader('oauth_token', cookies.get('oauth_token'));
+              //   proxyReq.setHeader('oauth_signature', cookies.get('apisecret')+'&'+cookies.get('accesssecret'));
+              //   proxyReq.setHeader('oauth_signature_method', 'PLAINTEXT');
                 
-                proxyRes.headers['oauth_consumer_key']=cookies.get('oauth_consumer_key');
+              
+                /*proxyRes.headers['oauth_consumer_key']=cookies.get('oauth_consumer_key');
                 proxyRes.headers['oauth_token']=cookies.get('oauth_token');
-                proxyRes.headers['oauth_signature']=cookies.get('oauth_signature');
-                proxyRes.headers['oauth_signature_method']=  'PLAINTEXT';
+                proxyRes.headers['oauth_signature']=cookies.get('apisecret')+'&'+cookies.get('accesssecret')
+                proxyRes.headers['oauth_signature_method']=  'PLAINTEXT';*/
         
                 
-                return proxyRes;
+                return proxyReq;
                }     
        })
   );
